@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenDrive Car Rentals</title>
+    <link rel="stylesheet" href="carcss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+    <body>
+        <header>
+            <div class="container">
+                <h1><span class="highlight"> Car Rentals</span></h1>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#cars">Our Cars</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+        <section id="hero">
+            <div class="container">
+                <h2>Premium Cars at Affordable Prices</h2>
+                <p>Find your perfect ride for any occasion</p>
+                <button id="book-now" class="btn">Book Now</button>
+            </div>
+        </section>
+    
+        <section id="search">
+            <div class="container">
+                <div class="search-container">
+                    <h2>Find Your Perfect Car</h2>
+                    <div class="search-form">
+                        <div class="form-group">
+                            <label for="pickup-date">Pickup Date</label>
+                            <input type="date" id="pickup-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="return-date">Return Date</label>
+                            <input type="date" id="return-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="car-type">Car Type</label>
+                            <select id="car-type">
+                                <option value="all">All Cars</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="suv">SUV</option>
+                                <option value="luxury">Luxury</option>
+                                <option value="sports">Sports</option>
+                                <option value="electric">Electric</option>
+                            </select>
+                        </div>
+                        <button id="search-btn" class="btn">Search</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="cars">
+            <div class="container">
+                <h2>Our Fleet</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="sedan">Sedan</button>
+                    <button class="filter-btn" data-filter="suv">SUV</button>
+                    <button class="filter-btn" data-filter="luxury">Luxury</button>
+                    <button class="filter-btn" data-filter="sports">Sports</button>
+                    <button class="filter-btn" data-filter="electric">Electric</button>
+                    <button class="filter-btn" data-filter="hatchback">Hatchback</button>
+                </div>
+                <div class="cars-container" id="cars-grid">
+                    <!-- Cars will be dynamically inserted here via JavaScript -->
+                </div>
+            </div>
+        </section>
+    
+        <div id="booking-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Reserve Your Car</h2>
+                <div id="selected-car-info"></div>
+                <form id="booking-form">
+                    <input type="hidden" id="modal-car-id" name="carId">
+                        <!-- Existing fields -->
+                        <div class="form-group">
+                            <label for="customer-name">Full Name*</label>
+                            <input type="text" id="customer-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-email">Email*</label>
+                            <input type="email" id="customer-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-phone">Phone*</label>
+                            <input type="tel" id="customer-phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-address">Address</label>
+                            <textarea id="customer-address" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-license">Driver's License Number*</label>
+                            <input type="text" id="customer-license" required>
+                        </div>
+                        <!-- Rest of your form -->
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modal-pickup-date">Pickup Date</label>
+                            <input type="date" id="modal-pickup-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-return-date">Return Date</label>
+                            <input type="date" id="modal-return-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="additional-info">Additional Requirements</label>
+                        <textarea id="additional-info" rows="3"></textarea>
+                    </div>
+                    <div class="total-price" style="color:#000">
+                        <span>Total Price: </span>
+                        <span id="total-price">$0.00</span>
+                    </div>
+                    <button type="submit" class="btn">Complete Reservation</button>
+                </form>
+            </div>
+        </div>
+    
+        <section id="about">
+            <div class="container">
+                <h2>About EcoRide Car Rentals</h2>
+                <p>EcoRide Car Rentals is committed to providing high-quality vehicles with exceptional service. Founded in 2010, we've grown to become a trusted name in the car rental industry with a focus on customer satisfaction and environmental responsibility.</p>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">🚗</div>
+                        <h3>Premium Fleet</h3>
+                        <p>Our vehicles are regularly maintained and never older than 2 years.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">💰</div>
+                        <h3>Best Prices</h3>
+                        <p>Competitive rates with no hidden fees or charges.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🌱</div>
+                        <h3>Eco-Friendly</h3>
+                        <p>Growing selection of electric and hybrid vehicles to reduce environmental impact.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-container">
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <h3>Address</h3>
+                            <p>123 Green Street, Cityville, State 12345</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Phone</h3>
+                            <p>(555) 123-4567</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Email</h3>
+                            <p>info@ecoriderentals.com</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Hours</h3>
+                            <p>Monday - Friday: 8am - 8pm<br>
+                            Saturday: 9am - 6pm<br>
+                            Sunday: 10am - 4pm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </section>
+        <section id="reviews">
+            <div class="container">
+                <h2>Customer Reviews</h2>
+                
+                <!-- Review Form -->
+                <form id="reviewForm">
+                    <div>
+                        <label for="reviewerName">Name:</label>
+                        <input type="text" id="reviewerName" required>
+                    </div>
+                    <div>
+                        <label for="reviewText">Review:</label>
+                        <textarea id="reviewText" required></textarea>
+                    </div>
+                    <div>
+                        <h3><label for="rating">Rating:</label></h3>
+                        <div id="rating">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit">Submit Review</button>
+                </form>
+                
+                <!-- Review List -->
+                <div id="reviewList">
+                    <!-- Reviews will appear here -->
+                </div>
+            </div>
+        </section>
+    
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Customer <span>Testimonials</span></h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial">
+                        <p class="testimonial-text">"SpeedDrive offered me the best rental experience I've ever had. The car was in perfect condition and the service was exceptional."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Anand</h4>
+                                <p>Bangalore</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more testimonials here -->
+                    <div class="testimonial">
+                        <p class="testimonial-text">"I was impressed by the quality of the vehicles and the professional customer service. Will definitely rent again!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Priya</h4>
+                                <p>Mumbai</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p class="testimonial-text">"The booking process was seamless and the car was delivered right on time. Excellent experience overall."</p>
+                        <div class="testimonial-author">
+                            <div class="author-info">
+                                <h4>Rahul</h4>
+                                <p>Delhi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 EcoRide Car Rentals. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+            </div>
+        </footer>
+        <script src="carscript.js"></script>
+        </body>
+        </html>
