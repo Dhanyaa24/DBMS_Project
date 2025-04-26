@@ -65,6 +65,11 @@
         <section id="cars">
             <div class="container">
                 <h2>Our Fleet</h2>
+                <div class="action-buttons" style="margin:10px;padding-bottom: 20px;">
+                    <button id="add-car-btn" class="btn">Add New Car</button>
+                    <button id="delete-car-btn" class="btn">Delete Car</button>
+                </div>
+        
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="sedan">Sedan</button>
@@ -79,6 +84,27 @@
                 </div>
             </div>
         </section>
+        <div id="add-car-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add New Car</h2>
+                <form id="add-car-form">
+                    <label for="car-name">Car Name:</label>
+                    <input type="text" id="car-name" required>
+                    <label for="car-type">Car Type:</label>
+                    <select id="car-type">
+                        <option value="sedan">Sedan</option>
+                        <option value="suv">SUV</option>
+                        <option value="luxury">Luxury</option>
+                        <option value="sports">Sports</option>
+                        <option value="electric">Electric</option>
+                    </select>
+                    <label for="car-price">Car Price (per day):</label>
+                    <input type="number" id="car-price" required>
+                    <button type="submit" class="btn">Add Car</button>
+                </form>
+            </div>
+        </div>
     
         <div id="booking-modal" class="modal">
             <div class="modal-content">
