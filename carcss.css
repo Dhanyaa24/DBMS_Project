@@ -807,3 +807,165 @@ footer .container {
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
+/* Style for Add Car Button */
+#add-car-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 5px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+#add-car-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Style for Delete Car Button */
+#delete-car-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 5px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+#delete-car-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+/* Modal Styles for Add Car */
+#add-car-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 60px 0;
+}
+
+.add-car-modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.add-car-modal-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.add-car-modal-content input,
+.add-car-modal-content select,
+.add-car-modal-content button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-car-modal-content button {
+    background-color: #0066cc; /* Blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.add-car-modal-content button:hover {
+    background-color: #005bb5;
+}
+
+/* Close Button for Modal */
+.add-car-close {
+    color: #aaa;
+    font-size: 2em;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.add-car-close:hover,
+.add-car-close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Modal Styles for Delete Car */
+#delete-car-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 60px 0;
+}
+
+.delete-car-modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.delete-car-modal-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.delete-car-modal-content button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #dc3545; /* Red */
+    color: white;
+    cursor: pointer;
+}
+
+.delete-car-modal-content button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+.delete-car-close {
+    color: #aaa;
+    font-size: 2em;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.delete-car-close:hover,
+.delete-car-close:focus {
+    color: black;
+    text-decoration: none;
+}
