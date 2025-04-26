@@ -87,6 +87,43 @@ app.post('/api/bookings', async (req, res) => {
         'UPDATE cars SET status = "rented" WHERE id = ?',
         [carId]
       );
+      // Update a car
+app.put('/api/cars/:id', async (req, res) => {
+    const { make, model, year, color, price_per_day, status } = req.body;
+  
+    try {
+      const [result] = await pool.query(
+        `UPDATE cars SET make = ?, model = ?, year = ?, color = ?, 
+        price_per_day = ?, status = ?, updated_at = NOW() WHERE id = ?`,
+        [make, model, year, color, price_per_day, status, req.params.id]
+      );
+  
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Car not found' });
+      }
+  
+      res.json({ message: 'Car updated successfully' });
+    } catch (error) {
+      console.error('Error updating car:', error);
+      res.status(500).json({ message: 'Error updating car', error: error.message });
+    }
+  });
+  // Delete a car
+app.delete('/api/cars/:id', async (req, res) => {
+    try {
+      const [result] = await pool.query('DELETE FROM cars WHERE id = ?', [req.params.id]);
+  
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Car not found' });
+      }
+  
+      res.json({ message: 'Car deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting car:', error);
+      res.status(500).json({ message: 'Error deleting car', error: error.message });
+    }
+  });
+  
       
       await connection.commit();
       
