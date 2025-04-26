@@ -262,6 +262,75 @@ let carsData = [ {
 document.addEventListener('DOMContentLoaded', () => {
     fetchCars();
     setupEventListeners();
+    const addCarButton = document.getElementById("add-car-btn");
+    const deleteCarButton = document.getElementById("delete-car-btn");
+    const addCarModal = document.getElementById("add-car-modal");
+    const closeModalButton = document.querySelector(".close");
+    const addCarForm = document.getElementById("add-car-form");
+
+    // Event listener for "Add New Car" button
+    addCarButton.addEventListener("click", function() {
+        // Open modal for adding new car
+        openModalForAddingCar();
+    });
+
+    // Event listener for "Delete Car" button
+    deleteCarButton.addEventListener("click", function() {
+        // Logic for deleting a car (e.g., show confirmation dialog)
+        const carId = prompt("Enter Car ID to delete:");
+        if (carId) {
+            deleteCar(carId);
+        }
+    });
+
+    // Function to open modal for adding a new car
+    function openModalForAddingCar() {
+        addCarModal.style.display = "block";
+    }
+
+    // Function to close modal
+    closeModalButton.addEventListener("click", function() {
+        addCarModal.style.display = "none";
+    });
+
+    // Event listener for Add Car form submission
+    addCarForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const carName = document.getElementById("car-name").value;
+        const carType = document.getElementById("car-type").value;
+        const carPrice = document.getElementById("car-price").value;
+
+        // Here you can send the data to the server or process it as needed
+        console.log("Adding Car:", carName, carType, carPrice);
+
+        // For example, send an API request to add the car (this is just a mockup)
+        // You would replace this with a real API call in your actual app
+        alert("New car added successfully!");
+
+        // Close the modal after adding the car
+        addCarModal.style.display = "none";
+        
+        // Optionally, you can reset the form
+        addCarForm.reset();
+    });
+
+    // Function to delete a car (simulate the process)
+    function deleteCar(carId) {
+        // Confirm the deletion
+        if (confirm("Are you sure you want to delete this car?")) {
+            console.log("Car deleted with ID:", carId);
+            alert("Car deleted successfully!");
+            // You can send a request to your server to delete the car by ID
+        }
+    }
+
+    // Close modal if clicked outside
+    window.addEventListener("click", function(event) {
+        if (event.target === addCarModal) {
+            addCarModal.style.display = "none";
+        }
+    });
 });
 
 // Fetch all cars from backend
@@ -291,7 +360,7 @@ function displayCars(cars) {
 
     carsGrid.innerHTML = cars.map(car => `
         <div class="car-card ${car.status !== 'available' ? 'unavailable' : ''}">
-            <div class="car-img" style="background-image: url('${car.imageUrl || 'https://via.placeholder.com/300'}')">
+            <div class="car-img" style="background-image: url('${car.image_url || 'https://via.placeholder.com/300'}')">
                 <span class="car-type">${car.type}</span>
                 <span class="car-status ${car.status}">${car.status}</span>
             </div>
@@ -419,6 +488,84 @@ async function submitBookingForm(e) {
         alert('Please select valid pickup and return dates.');
         return;
     }
+    // Function to open car update modal with existing car details
+async function openUpdateCarModal(carId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/cars/${carId}`);
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to fetch car details for update');
+        }
+
+        const car = await response.json();
+        
+        // Populate the modal fields with existing car details
+        document.getElementById('update-car-id').value = car.id;
+        document.getElementById('update-make').value = car.make;
+        document.getElementById('update-model').value = car.model;
+        document.getElementById('update-year').value = car.year;
+        document.getElementById('update-type').value = car.type;
+        document.getElementById('update-price').value = car.price_per_day;
+        document.getElementById('update-status').value = car.status;
+        document.getElementById('update-seating').value = car.seating;
+        document.getElementById('update-luggage').value = car.luggage;
+        document.getElementById('update-transmission').value = car.transmission;
+        document.getElementById('update-fuel').value = car.fuel;
+        document.getElementById('update-mileage').value = car.mileage;
+
+        // Open the modal
+        document.getElementById('update-car-modal').style.display = 'block';
+
+    } catch (error) {
+        console.error('Error fetching car details for update:', error);
+        alert(`Failed to load car details: ${error.message}`);
+    }
+}
+
+// Function to update car details
+async function updateCar(e) {
+    e.preventDefault();
+
+    const updatedCar = {
+        id: parseInt(document.getElementById('update-car-id').value),
+        make: document.getElementById('update-make').value,
+        model: document.getElementById('update-model').value,
+        year: parseInt(document.getElementById('update-year').value),
+        type: document.getElementById('update-type').value,
+        price_per_day: parseFloat(document.getElementById('update-price').value),
+        status: document.getElementById('update-status').value,
+        seating: parseInt(document.getElementById('update-seating').value),
+        luggage: parseInt(document.getElementById('update-luggage').value),
+        transmission: document.getElementById('update-transmission').value,
+        fuel: document.getElementById('update-fuel').value,
+        mileage: document.getElementById('update-mileage').value
+    };
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/cars/${updatedCar.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedCar)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to update car');
+        }
+
+        alert('Car updated successfully!');
+        document.getElementById('update-car-modal').style.display = 'none';
+        fetchCars(); // Refresh the car list to reflect the update
+    } catch (error) {
+        console.error('Error updating car:', error);
+        alert(`Update failed: ${error.message}`);
+    }
+}
+
     
     try {
         const response = await fetch(`${API_BASE_URL}/bookings`, {
